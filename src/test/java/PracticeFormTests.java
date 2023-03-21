@@ -2,6 +2,8 @@ import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
+import java.io.File;
+
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
@@ -21,6 +23,7 @@ public class PracticeFormTests {
         String lastName = "Valeriya";
         String userEmail = "123@mail.com";
         String userNumber = "5-09-08";
+        File file = new File("src/test/resources/test.xlsx");
 
 
         open("/automation-practice-form");
@@ -32,8 +35,14 @@ public class PracticeFormTests {
         $(byText("Female")).click();
         $("#userNumber").setValue(userNumber);
         $("#dateOfBirthInput").click();
-        $(".react-datepicker__month-dropdown-container").click();
-        $(byText("December")).click();// не работает
+        $("select.react-datepicker__month-select").selectOption("December");
+        $("select.react-datepicker__year-select").selectOption("1988");
+        $(".react-datepicker__month").$(byText("31")).click();
+        $("#subjectsInput").setValue("Chemistry").pressEnter();
+        $("#hobbiesWrapper").$(byText("Sports")).click();
+        $("#hobbiesWrapper").$(byText("Reading")).click();
+        $("#uploadPicture").uploadFile(file);
+
 
 
         sleep(4000);
