@@ -24,6 +24,7 @@ public class PracticeFormTests {
         String userEmail = "123@mail.com";
         String userNumber = "5-09-08";
         File file = new File("src/test/resources/test.xlsx");
+        String currentAddress = "Кутателадзе 4г";
 
 
         open("/automation-practice-form");
@@ -42,6 +43,7 @@ public class PracticeFormTests {
         $("#hobbiesWrapper").$(byText("Sports")).click();
         $("#hobbiesWrapper").$(byText("Reading")).click();
         $("#uploadPicture").uploadFile(file);
+        $("#currentAddress").setValue(currentAddress);
 
 
 
