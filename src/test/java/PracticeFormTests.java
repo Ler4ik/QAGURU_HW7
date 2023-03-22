@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import java.io.File;
 
+import static com.codeborne.selenide.Condition.appear;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
@@ -19,16 +20,24 @@ public class PracticeFormTests {
 
     @Test
     void fillFormTest(){
-        String firstName = "Kharlova";
-        String lastName = "Valeriya";
+        String firstName = "Valeriya";
+        String lastName = "Kharlova";
         String userEmail = "123@mail.com";
-        String userNumber = "5-09-08";
+        String userGender = "Female";
+        String userNumber = "8982345789";
+        String dateOfBirth = "31 December,1988";
+        String subject = "Chemistry";
+        String hobbies = "Sports, Reading";
         File file = new File("src/test/resources/test.xlsx");
+        String fileName = "test.xlsx";
         String currentAddress = "Кутателадзе 4г";
+        String stateAndCity = "NCR Delhi";
 
 
         open("/automation-practice-form");
         $(".main-header").shouldHave(text("Practice Form"));
+        executeJavaScript("$('footer').remove()");
+        executeJavaScript("$('#fixedban').remove()");
 
         $("#firstName").setValue(firstName);
         $("#lastName").setValue(lastName);
@@ -39,11 +48,20 @@ public class PracticeFormTests {
         $("select.react-datepicker__month-select").selectOption("December");
         $("select.react-datepicker__year-select").selectOption("1988");
         $(".react-datepicker__month").$(byText("31")).click();
-        $("#subjectsInput").setValue("Chemistry").pressEnter();
+        $("#subjectsInput").setValue(subject).pressEnter();
         $("#hobbiesWrapper").$(byText("Sports")).click();
         $("#hobbiesWrapper").$(byText("Reading")).click();
         $("#uploadPicture").uploadFile(file);
         $("#currentAddress").setValue(currentAddress);
+        $("#react-select-3-input").setValue("NCR").pressEnter();
+        $("#react-select-4-input").setValue("Delhi").pressEnter();
+        $("#submit").click();
+
+        $(".modal-content").should(appear);
+        $("#example-modal-sizes-title-lg").shouldHave(text("Thanks for submitting the form"));
+        $(".modal-body").shouldHave(text(firstName + " " + lastName),text(userEmail),text(userGender),
+                text(userNumber),text(dateOfBirth),text(subject),text(hobbies),text(fileName),
+                text(currentAddress),text(stateAndCity));
 
 
 
