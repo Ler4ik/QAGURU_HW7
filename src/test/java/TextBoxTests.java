@@ -36,7 +36,6 @@ public class TextBoxTests {
         $("#output #email").shouldHave(text(userEmail));
         $("#output #currentAddress").shouldHave(text(currentAddress));
         $("#output #permanentAddress").shouldHave(text(permanentAddress));
-        sleep(4000);
     }
 
 

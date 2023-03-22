@@ -62,10 +62,5 @@ public class PracticeFormTests {
         $(".modal-body").shouldHave(text(firstName + " " + lastName),text(userEmail),text(userGender),
                 text(userNumber),text(dateOfBirth),text(subject),text(hobbies),text(fileName),
                 text(currentAddress),text(stateAndCity));
-
-
-
-        sleep(4000);
-
     }
 }
