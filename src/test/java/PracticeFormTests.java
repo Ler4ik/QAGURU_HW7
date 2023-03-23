@@ -1,6 +1,7 @@
 import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import pages.RegistrationPage;
 
 import java.io.File;
 
@@ -33,17 +34,15 @@ public class PracticeFormTests {
         String currentAddress = "Кутателадзе 4г";
         String stateAndCity = "NCR Delhi";
 
+        RegistrationPage registrationPage = new RegistrationPage();
+        registrationPage.openPage();
+        registrationPage.setFirstName(firstName);
+        registrationPage.setLastName(lastName);
+        registrationPage.setEmail(userEmail);
+        registrationPage.setGender(userGender);
+        registrationPage.setNumber(userNumber);
 
-        open("/automation-practice-form");
-        $(".main-header").shouldHave(text("Practice Form"));
-        executeJavaScript("$('footer').remove()");
-        executeJavaScript("$('#fixedban').remove()");
 
-        $("#firstName").setValue(firstName);
-        $("#lastName").setValue(lastName);
-        $("#userEmail").setValue(userEmail);
-        $(byText("Female")).click();
-        $("#userNumber").setValue(userNumber);
         $("#dateOfBirthInput").click();
         $("select.react-datepicker__month-select").selectOption("December");
         $("select.react-datepicker__year-select").selectOption("1988");
