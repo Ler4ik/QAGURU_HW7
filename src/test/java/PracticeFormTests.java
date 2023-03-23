@@ -13,6 +13,8 @@ import static com.codeborne.selenide.Selenide.*;
 
 public class PracticeFormTests {
 
+    RegistrationPage registrationPage = new RegistrationPage();
+
     @BeforeAll
     static void beforeAll(){
         Configuration.baseUrl = "https://demoqa.com";
@@ -34,13 +36,12 @@ public class PracticeFormTests {
         String currentAddress = "Кутателадзе 4г";
         String stateAndCity = "NCR Delhi";
 
-        RegistrationPage registrationPage = new RegistrationPage();
-        registrationPage.openPage();
-        registrationPage.setFirstName(firstName);
-        registrationPage.setLastName(lastName);
-        registrationPage.setEmail(userEmail);
-        registrationPage.setGender(userGender);
-        registrationPage.setNumber(userNumber);
+        registrationPage.openPage()
+                .setFirstName(firstName)
+                .setLastName(lastName)
+                .setEmail(userEmail)
+                .setGender(userGender)
+                .setNumber(userNumber);
 
 
         $("#dateOfBirthInput").click();
