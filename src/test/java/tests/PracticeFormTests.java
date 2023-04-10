@@ -1,23 +1,22 @@
 package tests;
 
+import com.github.javafaker.Faker;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
-
-import static com.codeborne.selenide.Condition.*;
-import static com.codeborne.selenide.Selectors.byText;
-import static com.codeborne.selenide.Selenide.*;
-
+import java.util.Locale;
 
 public class PracticeFormTests extends TestBase {
 
     @Test
     void fillFormTest() {
-        String firstName = "Valeriya";
-        String lastName = "Kharlova";
-        String userEmail = "123@mail.com";
+
+        Faker faker = new Faker(new Locale("ru"));
+        String firstName = faker.name().firstName();
+        String lastName = faker.name().lastName();
+        String userEmail = faker.internet().emailAddress();
         String userGender = "Female";
-        String userNumber = "8982345789";
+        String userNumber = faker.number().digits(10);
         String day = "31";
         String month = "December";
         String year = "1988";
