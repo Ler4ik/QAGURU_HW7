@@ -1,6 +1,7 @@
 package tests;
 
 import com.github.javafaker.Faker;
+import data.GenerateRandom;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
@@ -15,18 +16,18 @@ public class PracticeFormTests extends TestBase {
         String firstName = faker.name().firstName();
         String lastName = faker.name().lastName();
         String userEmail = faker.internet().emailAddress();
-        String userGender = "Female";
+        String userGender = faker.options().option("Female", "Male", "Other");
         String userNumber = faker.number().digits(10);
-        String day = "31";
-        String month = "December";
-        String year = "1988";
-        String subject = "Chemistry";
-        String hobbies = "Sports";
+        String month = faker.options().option("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December");
+        String year = faker.number().numberBetween(1940,2005) + "";
+        String day = faker.number().numberBetween(10,28) + "";
+        String subject =  faker.options().option("Chemistry","Hindi", "Social Studies", "Data Science");
+        String hobbies = faker.options().option("Sports", "Music");
         String fileName = "test.xlsx";
         File file = new File("src/test/resources/" + fileName);
-        String currentAddress = "Кутателадзе 4г";
-        String state = "NCR";
-        String city = "Delhi";
+        String currentAddress = faker.address().streetAddress();
+        String state = faker.options().option("NCR", "Uttar Pradesh", "Haryana", "Rajasthan");
+        String city = GenerateRandom.setCity(state);
 
         registrationPage.openPage()
                 .setFirstName(firstName)
