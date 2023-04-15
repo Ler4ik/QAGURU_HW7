@@ -2,11 +2,13 @@ package tests;
 
 import com.github.javafaker.Faker;
 import data.GenerateRandom;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
 import java.util.Locale;
 
+@Tag("simple")
 public class PracticeFormTests extends TestBase {
 
     @Test
