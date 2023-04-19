@@ -12,7 +12,7 @@ import static com.codeborne.selenide.Selenide.*;
 public class TextBoxTests extends TestBase{
     TextBoxPage textBoxPage = new TextBoxPage();
 
-    //@Tag("simple")
+    @Tag("simple")
     @Test
     void fillFormTest(){
        textBoxPage
