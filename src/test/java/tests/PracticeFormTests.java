@@ -1,59 +1,39 @@
 package tests;
-
-import com.github.javafaker.Faker;
-import data.GenerateRandom;
+import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.Tags;
 import org.junit.jupiter.api.Test;
-
-import java.io.File;
-import java.util.Locale;
 
 public class PracticeFormTests extends TestBase {
 
+    @Tags({@Tag("simple"), @Tag("smoke")})
     @Test
     void fillFormTest() {
 
-        Faker faker = new Faker(new Locale("ru"));
-        String firstName = faker.name().firstName();
-        String lastName = faker.name().lastName();
-        String userEmail = faker.internet().emailAddress();
-        String userGender = faker.options().option("Female", "Male", "Other");
-        String userNumber = faker.number().digits(10);
-        String month = faker.options().option("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December");
-        String year = faker.number().numberBetween(1940,2005) + "";
-        String day = GenerateRandom.setDay();
-        String subject =  faker.options().option("Chemistry","Hindi", "Social Studies", "Data Science");
-        String hobbies = faker.options().option("Sports", "Music");
-        String fileName = "test.xlsx";
-        File file = new File("src/test/resources/" + fileName);
-        String currentAddress = faker.address().streetAddress();
-        String state = faker.options().option("NCR", "Uttar Pradesh", "Haryana", "Rajasthan");
-        String city = GenerateRandom.setCity(state);
-
         registrationPage.openPage()
-                .setFirstName(firstName)
-                .setLastName(lastName)
-                .setEmail(userEmail)
-                .setGender(userGender)
-                .setNumber(userNumber)
-                .setBirthDate(day,month,year)
-                .setSubject(subject)
-                .setHobby(hobbies)
-                .uploadFile(file)
-                .setCurrentAddress(currentAddress)
-                .setState(state)
-                .setCity(city)
+                .setFirstName(generateRandom.firstName)
+                .setLastName(generateRandom.lastName)
+                .setEmail(generateRandom.userEmail)
+                .setGender(generateRandom.userGender)
+                .setNumber(generateRandom.userNumber)
+                .setBirthDate(generateRandom.day,generateRandom.month,generateRandom.year)
+                .setSubject(generateRandom.subject)
+                .setHobby(generateRandom.hobbies)
+                .uploadFile(generateRandom.file)
+                .setCurrentAddress(generateRandom.currentAddress)
+                .setState(generateRandom.state)
+                .setCity(generateRandom.city)
                 .clickSubmitButton();
 
         registrationPage.verifyResultsModalAppears()
-                .verifyResult("Student Name",firstName + " " +lastName)
-                .verifyResult("Student Email", userEmail)
-                .verifyResult("Gender",userGender)
-                .verifyResult("Mobile", userNumber)
-                .verifyResult("Date of Birth",day + " " + month + "," + year)
-                .verifyResult("Subjects", subject)
-                .verifyResult("Hobbies", hobbies)
-                .verifyResult("Picture", fileName)
-                .verifyResult("Address",currentAddress)
-                .verifyResult("State and City",state + " " + city);
+                .verifyResult("Student Name",generateRandom.firstName + " " +generateRandom.lastName)
+                .verifyResult("Student Email", generateRandom.userEmail)
+                .verifyResult("Gender",generateRandom.userGender)
+                .verifyResult("Mobile", generateRandom.userNumber)
+                .verifyResult("Date of Birth",generateRandom.day + " " + generateRandom.month + "," + generateRandom.year)
+                .verifyResult("Subjects", generateRandom.subject)
+                .verifyResult("Hobbies", generateRandom.hobbies)
+                .verifyResult("Picture", generateRandom.fileName)
+                .verifyResult("Address",generateRandom.currentAddress)
+                .verifyResult("State and City",generateRandom.state + " " + generateRandom.city);
     }
 }
