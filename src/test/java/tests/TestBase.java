@@ -15,7 +15,6 @@ import pages.TextBoxPage;
 import java.util.Map;
 
 public class TestBase {
-    RegistrationPage registrationPage = new RegistrationPage();
     GenerateRandom generateRandom = new GenerateRandom();
     TextBoxPage textBoxPage = new TextBoxPage();
 
