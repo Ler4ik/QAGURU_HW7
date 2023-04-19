@@ -16,7 +16,7 @@ public class GenerateRandom {
     public String month = faker.options().option("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December");
     public String year = faker.number().numberBetween(1940,2005) + "";
     public String day = setDay();
-    public String subject =  faker.options().option("Chemistry","Hindi", "Social Studies", "Data Science");
+    public String subject =  faker.options().option("Chemistry","Hindi", "Social Studies");
     public String hobbies = faker.options().option("Sports", "Music");
     public String fileName = "test.xlsx";
     public File file = new File("src/test/resources/" + fileName);
