@@ -42,7 +42,7 @@ public class PracticeFormTests extends TestBase {
                 .verifyResult("State and City",generateRandom.state + " " + generateRandom.city);
     }
 
-    @Tag("simple")
+    //@Tag("simple")
     @Test
     void emptyFormSubmit(){
         registrationPage
