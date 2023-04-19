@@ -2,6 +2,7 @@ package tests;
 
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+import pages.TextBoxPage;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
@@ -9,6 +10,8 @@ import static com.codeborne.selenide.Selenide.*;
 
 
 public class TextBoxTests extends TestBase{
+    TextBoxPage textBoxPage = new TextBoxPage();
+
     @Tag("simple")
     @Test
     void fillFormTest(){

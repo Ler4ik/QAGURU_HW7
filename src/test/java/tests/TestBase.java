@@ -16,7 +16,6 @@ import java.util.Map;
 
 public class TestBase {
     GenerateRandom generateRandom = new GenerateRandom();
-    TextBoxPage textBoxPage = new TextBoxPage();
 
     @BeforeAll
     static void beforeAll(){
