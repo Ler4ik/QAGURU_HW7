@@ -4,6 +4,9 @@ import org.junit.jupiter.api.Tags;
 import org.junit.jupiter.api.Test;
 import pages.RegistrationPage;
 
+import static com.codeborne.selenide.Condition.visible;
+import static com.codeborne.selenide.Selenide.$;
+
 public class PracticeFormTests extends TestBase {
     RegistrationPage registrationPage = new RegistrationPage();
 
@@ -37,5 +40,15 @@ public class PracticeFormTests extends TestBase {
                 .verifyResult("Picture", generateRandom.fileName)
                 .verifyResult("Address",generateRandom.currentAddress)
                 .verifyResult("State and City",generateRandom.state + " " + generateRandom.city);
+    }
+
+    @Tag("simple")
+    @Test
+    void emptyFormSubmit(){
+        registrationPage
+                .openPage()
+                .clickSubmitButton();
+
+        $("#output").shouldNotBe(visible);
     }
 }
