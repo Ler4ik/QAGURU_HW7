@@ -1,6 +1,7 @@
 package data;
 
 import com.github.javafaker.Faker;
+import org.junit.jupiter.api.Test;
 
 public class GenerateRandom {
     static Faker faker = new Faker();
@@ -16,7 +17,16 @@ public class GenerateRandom {
         } else if (state == "Rajasthan"){
             city = faker.options().option("Jaipur", "Jaiselmer");
         }
-
         return city;
     }
+    @Test
+    public static String setDay(){
+        String day = faker.number().numberBetween(1,28) + "";
+        if(Integer.parseInt(day) < 10){
+            day = "0" + day + "";
+        }
+        return day;
+    }
+
+
 }

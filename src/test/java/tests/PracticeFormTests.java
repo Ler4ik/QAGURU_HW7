@@ -2,13 +2,11 @@ package tests;
 
 import com.github.javafaker.Faker;
 import data.GenerateRandom;
-import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
 import java.util.Locale;
 
-@Tag("simple")
 public class PracticeFormTests extends TestBase {
 
     @Test
@@ -22,7 +20,7 @@ public class PracticeFormTests extends TestBase {
         String userNumber = faker.number().digits(10);
         String month = faker.options().option("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December");
         String year = faker.number().numberBetween(1940,2005) + "";
-        String day = faker.number().numberBetween(10,28) + "";
+        String day = GenerateRandom.setDay();
         String subject =  faker.options().option("Chemistry","Hindi", "Social Studies", "Data Science");
         String hobbies = faker.options().option("Sports", "Music");
         String fileName = "test.xlsx";
