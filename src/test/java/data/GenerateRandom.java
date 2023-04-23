@@ -1,7 +1,6 @@
 package data;
 
 import com.github.javafaker.Faker;
-import org.junit.jupiter.api.Test;
 
 import java.io.File;
 
