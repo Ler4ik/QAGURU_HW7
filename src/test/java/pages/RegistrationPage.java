@@ -1,6 +1,7 @@
 package pages;
 
 import com.codeborne.selenide.SelenideElement;
+import io.qameta.allure.Step;
 import pages.components.CalendarComponent;
 import pages.components.RegistrationResultsModal;
 
@@ -33,6 +34,7 @@ public class RegistrationPage {
             dateOfBirth = $("#dateOfBirthInput");
 
 
+    @Step("Открыть страницу регистрации")
     public RegistrationPage openPage(){
         open("/automation-practice-form");
         $(".main-header").shouldHave(text(TITLE_TEXT));
@@ -42,36 +44,42 @@ public class RegistrationPage {
         return this;
     }
 
+    @Step("Установить значение для First Name")
     public RegistrationPage setFirstName(String value){
         firstNameInput.setValue(value);
 
         return this;
     }
 
+    @Step("Установить значение для Last Name")
     public RegistrationPage setLastName(String value){
         lastNameInput.setValue(value);
 
         return this;
     }
 
+    @Step("Установить значение для Email")
     public RegistrationPage setEmail(String value){
         userEmailInput.setValue(value);
 
         return this;
     }
 
+    @Step("Установить значение для Gender")
     public RegistrationPage setGender(String value){
         gender.$(byText(value)).click();
 
         return this;
     }
 
+    @Step("Установить значение для Number")
     public RegistrationPage setNumber(String value){
         userNumberInput.setValue(value);
 
         return this;
     }
 
+    @Step("Установить значение для Birth Date")
     public RegistrationPage setBirthDate(String day, String month, String year){
         dateOfBirth.click();
         calendarComponent.setDate(day, month,year);
@@ -79,54 +87,63 @@ public class RegistrationPage {
         return this;
     }
 
+    @Step("Установить значение для Subject")
     public RegistrationPage setSubject(String value){
         subject.setValue(value).pressEnter();
 
         return this;
     }
 
+    @Step("Установить значение для Hobby")
     public RegistrationPage setHobby(String value){
         hobby.$(byText(value)).click();
 
         return this;
     }
 
+    @Step("Загрузить файл")
     public RegistrationPage uploadFile(File file){
         uploadPicture.uploadFile(file);
 
         return this;
     }
 
+    @Step("Установить значение для Current Address")
     public RegistrationPage setCurrentAddress(String value){
         currentAddress.setValue(value);
 
         return this;
     }
 
+    @Step("Установить значение для State")
     public RegistrationPage setState(String value){
         state.setValue(value).pressEnter();
 
         return this;
     }
 
+    @Step("Установить значение для City")
     public RegistrationPage setCity(String value){
         city.setValue(value).pressEnter();
 
         return this;
     }
 
+    @Step("Нажать кнопку ОК")
     public RegistrationPage clickSubmitButton(){
         submitButton.click();
 
         return this;
     }
 
+    @Step("Проверить заголовок модалки")
     public RegistrationPage verifyResultsModalAppears(){
         registrationResultsModal.verifyModalAppears();
 
         return this;
     }
 
+    @Step("Проверить значения в таблице")
     public RegistrationPage verifyResult(String key,String value){
         registrationResultsModal.verifyResult(key,value);
 
